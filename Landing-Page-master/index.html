@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Modern Carpentry — Custom Furniture and Projects</title>
+    <meta name="description" content="Artisanal carpentry: custom furniture, kitchens, and projects" />
+    <meta name="author" content="Carpintería" />
+    <!-- Tailwind CDN (rápido para prototipo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Interactivity & UI libraries -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script defer src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+
+      :root {
+        --brand-hue: 30; /* Naranja/ámbar */
+        --brand-saturation: 60%;
+        --brand-lightness: 30%;
+        
+        --brand-primary: hsl(var(--brand-hue), var(--brand-saturation), var(--brand-lightness)); /* Color principal más oscuro y rico */
+        --brand-secondary: hsl(var(--brand-hue), 40%, 50%); /* Un tono más suave para acentos */
+        --brand-accent: hsl(var(--brand-hue), 70%, 55%); /* Un color vibrante para CTAs */
+        --brand-light: hsl(var(--brand-hue), 25%, 97%); /* Fondo muy claro */
+        --brand-dark: hsl(var(--brand-hue), 25%, 15%); /* Texto oscuro */
+      }
+      .font-serif {
+        font-family: 'EB Garamond', serif;
+      }
+      .glass{background:rgba(255,255,255,0.06);backdrop-filter:blur(6px);}
+
+      /* Prevent Alpine elements with x-cloak from flashing before Alpine initializes.
+         Alpine will remove the x-cloak attribute when it initializes. */
+      [x-cloak] { display: none !important; }
+
+    /* Provide a CSS variable for the header height used for anchor offset.
+      If your header height changes, update --header-offset accordingly. */
+    :root { --header-offset: 64px; }
+  
+    /* Ensure section and header targets are not covered by the sticky nav when navigating via anchors.
+      This is a progressive enhancement for browsers without JS or if JS offset fails. */
+    header[id], section[id], footer[id] {
+      scroll-margin-top: var(--header-offset);
+    }
+    </style>
+  </head>
+  <body class="text-gray-900 bg-gradient-to-br from-amber-50 to-amber-100" style="font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto;">
+    <!--Nav-->
+  <nav x-data="{open:false}" class="w-full z-40 top-0 glass border-b border-amber-200 sticky top-0">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-3">
+            <a href="#" class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-md bg-amber-700 flex items-center justify-center text-white font-bold text-xl">C</div>
+              <div>
+                <div class="font-extrabold text-amber-800 text-lg">The Wood Carpentry</div>
+                <div class="text-sm text-amber-600">Furniture & Projects</div>
+              </div>
+            </a>
+          </div>
+          <div class="hidden md:flex md:items-center md:space-x-6">
+            <a href="#inicio" class="text-amber-800 hover:text-amber-900 hover:scale-105 transition duration-300">Inicio</a>
+            <a href="#servicios" class="text-amber-800 hover:text-amber-900 hover:scale-105 transition duration-300">Services</a>
+            <a href="#galeria" class="text-amber-800 hover:text-amber-900 hover:scale-105 transition duration-300">Gallery</a>
+            <a href="#testimonios" class="text-amber-800 hover:text-amber-900 hover:scale-105 transition duration-300">Testimonials</a>
+            <a href="#contacto" class="bg-amber-700 text-white px-4 py-2 rounded-full shadow-lg hover:bg-amber-800 hover:scale-105 transition duration-300">Contact</a>
+          </div>
+          <div class="md:hidden">
+            <button @click="open = !open" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300">
+              <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div x-show="open" x-cloak x-transition:enter="duration-300 ease-out" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-200 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="md:hidden">
+        <div class="px-4 pt-2 pb-3 space-y-1 bg-white shadow-lg flex flex-col items-center text-center">
+          <a href="#inicio" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-amber-800 hover:bg-amber-50 w-full">Inicio</a>
+          <a href="#servicios" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-amber-800 hover:bg-amber-50 w-full">Services</a>
+          <a href="#galeria" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-amber-800 hover:bg-amber-50 w-full">Gallery</a>
+          <a href="#testimonios" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-amber-800 hover:bg-amber-50 w-full">Testimonials</a>
+          <a href="#contacto" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium bg-amber-700 text-white rounded-full text-center hover:bg-amber-800 w-full">Contact</a>
+        </div>
+      </div>
+    </nav>
+  <!--Hero-->
+  <header id="inicio" class="pt-24">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div data-aos="fade-right">
+          <span class="uppercase text-sm tracking-wider text-amber-600">Carpentry &amp; Design</span>
+          <h1 class="mt-4 text-5xl lg:text-6xl font-extrabold text-amber-900 leading-tight">Custom furniture that tells your story</h1>
+          <p class="mt-4 text-amber-700 text-xl leading-relaxed">From kitchens and wardrobes to unique pieces — artisanal design and professional finish.</p>
+          <div class="mt-8 flex gap-4">
+            <a href="#contacto" class="bg-amber-700 text-white px-6 py-3 rounded-full shadow-xl hover:bg-amber-800 hover:scale-105 transition duration-300">Request a quote</a>
+            <a href="#galeria" class="border border-amber-700 text-amber-700 px-6 py-3 rounded-full hover:bg-amber-50 hover:scale-105 transition duration-300">View works</a>
+          </div>
+          <div class="mt-8 flex gap-6 text-base text-amber-800">
+            <div class="flex items-center gap-2"><svg class="w-6 h-6 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h3V7a1 1 0 112 0v3h3a1 1 0 110 2H8v3a1 1 0 11-2 0v-3H3a1 1 0 01-1-1z"/></svg>Delivery 4-6 weeks</div>
+            <div class="flex items-center gap-2"><svg class="w-6 h-6 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h4l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2h-4l-2-2H4a2 2 0 01-2-2V5z"/></svg>More than 5 years in the market</div>
+          </div>
+        </div>
+        <div class="flex justify-center md:justify-end" data-aos="fade-left">
+          <div class="w-full max-w-md rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
+            <img src="https://media.istockphoto.com/id/2148914872/es/foto/capataz-dando-instrucciones-a-una-trabajadora-de-una-f%C3%A1brica-de-madera.jpg?s=612x612&w=0&k=20&c=ywtRxQLPpwGGxE83y_vGG21ItjqQDW_653GKalB1s3s=" alt="Carpenter working" class="w-full h-96 object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--Servicios-->
+    <section id="servicios" class="py-20 bg-amber-50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 class="text-4xl font-extrabold text-amber-900 text-center" data-aos="fade-up">Our Services</h2>
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
+            <div class="text-amber-700 text-3xl font-bold mb-4 flex items-center">
+              <iconify-icon icon="mdi:ruler-square" class="text-4xl mr-4"></iconify-icon>
+              Custom Design
+            </div>
+            <p class="text-gray-700">We create custom furniture that adapts to your style and needs.</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-amber-700 text-3xl font-bold mb-4 flex items-center">
+              <iconify-icon icon="mdi:shield-check" class="text-4xl mr-4"></iconify-icon>
+              Guaranteed Quality
+            </div>
+            <p class="text-gray-700">We use high-quality materials and artisanal techniques.</p>
+          </div>
+          <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-amber-700 text-3xl font-bold mb-4 flex items-center">
+              <iconify-icon icon="mdi:account-tie" class="text-4xl mr-4"></iconify-icon>
+              Professional Advice
+            </div>
+            <p class="text-gray-700">We advise you on the design and choice of materials.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Galería-->
+    <section id="galeria" class="py-20">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 class="text-4xl font-extrabold text-amber-900 text-center" data-aos="fade-up">Our Gallery</h2>
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up">
+            <img src="https://img.freepik.com/foto-gratis/mesa-restaurante-sillas-madera-colocadas-sala-decorada-estilo-clasico_140725-8460.jpg?t=st=1757371659~exp=1757375259~hmac=2e1a8b46764742ed8568c32cb6c4551791bf8a88e7ac9f6c02c4b0d709f4c3c7&w=1480" alt="Project 1" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+            <div class="p-4 bg-white">
+              <h3 class="font-serif text-lg font-semibold text-amber-800">Elegant Dining Set</h3>
+              <p class="text-gray-600">A custom-designed dining table and chairs, perfect for family gatherings.</p>
+            </div>
+          </div>
+          <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://imarket.com.pe/hogar/wp-content/uploads/2024/05/Mueble-de-madera-101-7.jpg" alt="Project 2" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+            <div class="p-4 bg-white">
+              <h3 class="font-serif text-lg font-semibold text-amber-800">Modern Living Room Cabinet</h3>
+              <p class="text-gray-600">A sleek and functional cabinet, designed to complement any modern living space.</p>
+            </div>
+          </div>
+          <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://media.istockphoto.com/id/987385292/es/foto/bonito-armario-de-madera-y-vestidor-ilustraci%C3%B3n-3d.jpg?s=612x612&w=0&k=20&c=8QRid4_waC3k3UeasGTcGnxUveLPI06jLBwBURyUlUk=" alt="Project 3" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+            <div class="p-4 bg-white">
+              <h3 class="font-serif text-lg font-semibold text-amber-800">Custom Wardrobe Solution</h3>
+              <p class="text-gray-600">A bespoke wardrobe, maximizing storage and style for any bedroom.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Testimonios-->
+    <section id="testimonios" class="py-20">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-4xl font-extrabold text-amber-900 text-center" data-aos="fade-up">What Our Clients Say</h2>
+        <p class="text-center text-amber-700 mt-4 text-lg" data-aos="fade-up" data-aos-delay="80">Our clients' satisfaction is our priority.</p>
+        <div class="mt-12 overflow-hidden">
+          <div class="swiper-container" data-aos="fade-up" data-aos-delay="80">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide p-8 bg-white rounded-xl shadow-lg min-h-[10rem] flex items-center">"Excellent work, attention to detail, and an impeccable result. Totally recommended!" — María P.</div>
+              <div class="swiper-slide p-8 bg-white rounded-xl shadow-lg min-h-[10rem] flex items-center">"My kitchen turned out spectacular, exceeding all my expectations. The team is very professional." — Juan R.</div>
+              <div class="swiper-slide p-8 bg-white rounded-xl shadow-lg min-h-[10rem] flex items-center">"Professional and punctual. They delivered the furniture on time and with exceptional quality." — Laura G.</div>
+              <div class="swiper-slide p-8 bg-white rounded-xl shadow-lg min-h-[10rem] flex items-center">"They transformed my home with their incredible designs. Every detail was perfect!" — Ana S.</div>
+            </div>
+            <div class="swiper-pagination mt-6"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Contacto-->
+    <section id="contacto" class="py-20 bg-amber-50">
+      <div class="max-w-3xl mx-auto px-6" data-aos="fade-up">
+        <h2 class="text-4xl font-extrabold text-amber-900 text-center">Contact Us</h2>
+        <p class="text-center text-amber-700 mt-4 text-lg">Do you have a project in mind? We'd love to hear from you!</p>
+        <form id="contactForm" class="mt-12 grid grid-cols-1 gap-6 bg-white p-8 rounded-xl shadow-2xl">
+          <input required name="name" placeholder="Your Name" class="border border-amber-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition duration-200" />
+          <input required type="email" name="email" placeholder="Your Email" class="border border-amber-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition duration-200" />
+          <textarea required name="message" rows="6" placeholder="Describe your project or inquiry" class="border border-amber-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition duration-200"></textarea>
+          <div class="flex justify-end">
+            <button type="submit" class="bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:bg-amber-800 hover:scale-105 transition duration-300">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!--Footer-->
+    <footer class="bg-white pt-12">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="w-full flex flex-col md:flex-row py-6 items-center justify-between">
+          <div class="flex-1 mb-6 md:mb-0 text-black flex items-center gap-3">
+            <a class="flex items-center gap-3" href="#">
+              <div class="w-10 h-10 rounded-md bg-amber-700 flex items-center justify-center text-white font-bold text-xl">C</div>
+              <div>
+                <div class="font-extrabold text-amber-800 text-lg">The Wood Carpentry</div>
+                <div class="text-sm text-amber-600">Furniture & Projects</div>
+              </div>
+            </a>
+          </div>
+          <div class="flex-1 text-right">
+            <p class="text-amber-800 text-lg font-semibold">Contact Us</p>
+            <p class="text-amber-600 mt-2">Tel: +34 600 000 000</p>
+            <p class="text-amber-600">Email: contact@carpentry.local</p>
+          </div>
+        </div>
+      </div>
+      <div class="py-6 bg-amber-800 text-amber-100">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+          <div class="text-sm">© 2025 <strong>The Wood Carpentry</strong> — All rights reserved.</div>
+          <div class="mt-3 md:mt-0 text-sm">Made with ❤️ by your trusted carpenter
+            
+      </div>
+    </footer>
+    <!-- jQuery if you need it
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  -->
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
