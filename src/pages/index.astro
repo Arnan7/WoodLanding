@@ -10,7 +10,7 @@ import armarioImg from '../assets/images/armario-de-madera.jpg';
 
 <Layout>
     <!--Nav-->
-  <nav x-data="{open:false}" class="w-full z-40 top-0 glass border-b border-amber-200 sticky top-0">
+  <nav x-data="{open:false}" class="w-full z-40 sticky top-0 bg-[#fffaf2]/95 backdrop-blur-md border-b border-amber-200/70 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-3">
@@ -18,7 +18,7 @@ import armarioImg from '../assets/images/armario-de-madera.jpg';
               <div class="w-10 h-10 rounded-md bg-amber-700 flex items-center justify-center text-white font-bold text-xl">C</div>
               <div>
                 <div class="font-extrabold text-amber-800 text-lg">The Wood Carpentry</div>
-                <div class="text-sm text-amber-600">Furniture & Projects</div>
+                <div class="text-sm text-amber-700">Furniture & Projects</div>
               </div>
             </a>
           </div>
@@ -51,7 +51,7 @@ import armarioImg from '../assets/images/armario-de-madera.jpg';
   <header id="inicio" class="pt-24">
       <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div data-aos="fade-right">
-          <span class="uppercase text-sm tracking-wider text-amber-600">Carpentry &amp; Design</span>
+          <span class="uppercase text-sm tracking-wider text-amber-700">Carpentry &amp; Design</span>
           <h1 class="mt-4 text-5xl lg:text-6xl font-extrabold text-amber-900 leading-tight">Custom furniture that tells your story</h1>
           <p class="mt-4 text-amber-700 text-xl leading-relaxed">From kitchens and wardrobes to unique pieces — artisanal design and professional finish.</p>
           <div class="mt-8 flex gap-4">
@@ -64,8 +64,16 @@ import armarioImg from '../assets/images/armario-de-madera.jpg';
           </div>
         </div>
         <div class="flex justify-center md:justify-end" data-aos="fade-left">
-          <div class="w-full max-w-md rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
-            <Image src={heroImg} alt="Carpenter working" class="w-full h-96 object-cover" loading="lazy" />
+          <div class="w-full max-w-md rounded-xl overflow-hidden shadow-2xl">
+            <Image
+              src={heroImg}
+              alt="Carpenters reviewing project plans in the workshop"
+              widths={[448, 612]}
+              sizes="(min-width: 768px) 448px, 100vw"
+              quality={90}
+              priority
+              class="w-full h-96 object-cover"
+            />
           </div>
         </div>
       </div>
@@ -170,14 +178,14 @@ import armarioImg from '../assets/images/armario-de-madera.jpg';
               <div class="w-10 h-10 rounded-md bg-amber-700 flex items-center justify-center text-white font-bold text-xl">C</div>
               <div>
                 <div class="font-extrabold text-amber-800 text-lg">The Wood Carpentry</div>
-                <div class="text-sm text-amber-600">Furniture & Projects</div>
+                <div class="text-sm text-amber-700">Furniture & Projects</div>
               </div>
             </a>
           </div>
           <div class="flex-1 text-right">
             <p class="text-amber-800 text-lg font-semibold">Contact Us</p>
-            <p class="text-amber-600 mt-2">Tel: +34 600 000 000</p>
-            <p class="text-amber-600">Email: contact@carpentry.local</p>
+            <p class="text-amber-700 mt-2">Tel: +34 600 000 000</p>
+            <p class="text-amber-700">Email: contact@carpentry.local</p>
           </div>
         </div>
       </div>
