@@ -1,0 +1,61 @@
+---
+// Layout principal: contiene exactamente el <head> y el <body> del index.html original.
+// El CSS se declara como global (is:global) para no alterar los selectores :root.
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Modern Carpentry — Custom Furniture and Projects</title>
+    <meta name="description" content="Artisanal carpentry: custom furniture, kitchens, and projects" />
+    <meta name="author" content="Carpintería" />
+    <!-- Tailwind CDN (rápido para prototipo) -->
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <!-- Interactivity & UI libraries -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script defer src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script is:inline src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style is:global>
+
+      :root {
+        --brand-hue: 30; /* Naranja/ámbar */
+        --brand-saturation: 60%;
+        --brand-lightness: 30%;
+
+        --brand-primary: hsl(var(--brand-hue), var(--brand-saturation), var(--brand-lightness)); /* Color principal más oscuro y rico */
+        --brand-secondary: hsl(var(--brand-hue), 40%, 50%); /* Un tono más suave para acentos */
+        --brand-accent: hsl(var(--brand-hue), 70%, 55%); /* Un color vibrante para CTAs */
+        --brand-light: hsl(var(--brand-hue), 25%, 97%); /* Fondo muy claro */
+        --brand-dark: hsl(var(--brand-hue), 25%, 15%); /* Texto oscuro */
+      }
+      .font-serif {
+        font-family: 'EB Garamond', serif;
+      }
+      .glass{background:rgba(255,255,255,0.06);backdrop-filter:blur(6px);}
+
+      /* Prevent Alpine elements with x-cloak from flashing before Alpine initializes.
+         Alpine will remove the x-cloak attribute when it initializes. */
+      [x-cloak] { display: none !important; }
+
+    /* Provide a CSS variable for the header height used for anchor offset.
+      If your header height changes, update --header-offset accordingly. */
+    :root { --header-offset: 64px; }
+
+    /* Ensure section and header targets are not covered by the sticky nav when navigating via anchors.
+      This is a progressive enhancement for browsers without JS or if JS offset fails. */
+    header[id], section[id], footer[id] {
+      scroll-margin-top: var(--header-offset);
+    }
+    </style>
+  </head>
+  <body class="text-gray-900 bg-gradient-to-br from-amber-50 to-amber-100" style="font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto;">
+    <slot />
+  </body>
+</html>

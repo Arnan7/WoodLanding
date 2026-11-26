@@ -1,56 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Modern Carpentry — Custom Furniture and Projects</title>
-    <meta name="description" content="Artisanal carpentry: custom furniture, kitchens, and projects" />
-    <meta name="author" content="Carpintería" />
-    <!-- Tailwind CDN (rápido para prototipo) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Interactivity & UI libraries -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script defer src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
+---
+// Contenido íntegro del index.html original, movido tal cual a un componente de Astro.
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import heroImg from '../assets/images/coworker-instuctions.jpg';
+import mesaImg from '../assets/images/mesa-restaurante-sillas-madera-colocadas-sala-decorada-estilo-clasico_140725-8460.jpg';
+import muebleImg from '../assets/images/Mueble-de-madera-101-7.jpg';
+import armarioImg from '../assets/images/armario-de-madera.jpg';
+---
 
-      :root {
-        --brand-hue: 30; /* Naranja/ámbar */
-        --brand-saturation: 60%;
-        --brand-lightness: 30%;
-        
-        --brand-primary: hsl(var(--brand-hue), var(--brand-saturation), var(--brand-lightness)); /* Color principal más oscuro y rico */
-        --brand-secondary: hsl(var(--brand-hue), 40%, 50%); /* Un tono más suave para acentos */
-        --brand-accent: hsl(var(--brand-hue), 70%, 55%); /* Un color vibrante para CTAs */
-        --brand-light: hsl(var(--brand-hue), 25%, 97%); /* Fondo muy claro */
-        --brand-dark: hsl(var(--brand-hue), 25%, 15%); /* Texto oscuro */
-      }
-      .font-serif {
-        font-family: 'EB Garamond', serif;
-      }
-      .glass{background:rgba(255,255,255,0.06);backdrop-filter:blur(6px);}
-
-      /* Prevent Alpine elements with x-cloak from flashing before Alpine initializes.
-         Alpine will remove the x-cloak attribute when it initializes. */
-      [x-cloak] { display: none !important; }
-
-    /* Provide a CSS variable for the header height used for anchor offset.
-      If your header height changes, update --header-offset accordingly. */
-    :root { --header-offset: 64px; }
-  
-    /* Ensure section and header targets are not covered by the sticky nav when navigating via anchors.
-      This is a progressive enhancement for browsers without JS or if JS offset fails. */
-    header[id], section[id], footer[id] {
-      scroll-margin-top: var(--header-offset);
-    }
-    </style>
-  </head>
-  <body class="text-gray-900 bg-gradient-to-br from-amber-50 to-amber-100" style="font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto;">
+<Layout>
     <!--Nav-->
   <nav x-data="{open:false}" class="w-full z-40 top-0 glass border-b border-amber-200 sticky top-0">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,7 +65,7 @@
         </div>
         <div class="flex justify-center md:justify-end" data-aos="fade-left">
           <div class="w-full max-w-md rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
-            <img src="https://media.istockphoto.com/id/2148914872/es/foto/capataz-dando-instrucciones-a-una-trabajadora-de-una-f%C3%A1brica-de-madera.jpg?s=612x612&w=0&k=20&c=ywtRxQLPpwGGxE83y_vGG21ItjqQDW_653GKalB1s3s=" alt="Carpenter working" class="w-full h-96 object-cover" loading="lazy" />
+            <Image src={heroImg} alt="Carpenter working" class="w-full h-96 object-cover" loading="lazy" />
           </div>
         </div>
       </div>
@@ -147,21 +105,21 @@
         <h2 class="text-4xl font-extrabold text-amber-900 text-center" data-aos="fade-up">Our Gallery</h2>
         <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up">
-            <img src="https://img.freepik.com/foto-gratis/mesa-restaurante-sillas-madera-colocadas-sala-decorada-estilo-clasico_140725-8460.jpg?t=st=1757371659~exp=1757375259~hmac=2e1a8b46764742ed8568c32cb6c4551791bf8a88e7ac9f6c02c4b0d709f4c3c7&w=1480" alt="Project 1" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+            <Image src={mesaImg} alt="Project 1" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
             <div class="p-4 bg-white">
               <h3 class="font-serif text-lg font-semibold text-amber-800">Elegant Dining Set</h3>
               <p class="text-gray-600">A custom-designed dining table and chairs, perfect for family gatherings.</p>
             </div>
           </div>
           <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://imarket.com.pe/hogar/wp-content/uploads/2024/05/Mueble-de-madera-101-7.jpg" alt="Project 2" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+            <Image src={muebleImg} alt="Project 2" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
             <div class="p-4 bg-white">
               <h3 class="font-serif text-lg font-semibold text-amber-800">Modern Living Room Cabinet</h3>
               <p class="text-gray-600">A sleek and functional cabinet, designed to complement any modern living space.</p>
             </div>
           </div>
           <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://media.istockphoto.com/id/987385292/es/foto/bonito-armario-de-madera-y-vestidor-ilustraci%C3%B3n-3d.jpg?s=612x612&w=0&k=20&c=8QRid4_waC3k3UeasGTcGnxUveLPI06jLBwBURyUlUk=" alt="Project 3" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+            <Image src={armarioImg} alt="Project 3" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
             <div class="p-4 bg-white">
               <h3 class="font-serif text-lg font-semibold text-amber-800">Custom Wardrobe Solution</h3>
               <p class="text-gray-600">A bespoke wardrobe, maximizing storage and style for any bedroom.</p>
@@ -226,13 +184,12 @@
       <div class="py-6 bg-amber-800 text-amber-100">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
           <div class="text-sm">© 2025 <strong>The Wood Carpentry</strong> — All rights reserved.</div>
-          <div class="mt-3 md:mt-0 text-sm">Made with ❤️ by your trusted carpenter
-            
+          <div class="mt-3 md:mt-0 text-sm">Made with ❤️ by your trusted carpenter</div>
+        </div>
       </div>
     </footer>
     <!-- jQuery if you need it
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
-    <script type="module" src="js/main.js"></script>
-  </body>
-</html>
+    <script type="module" src="/js/main.js" is:inline></script>
+</Layout>
