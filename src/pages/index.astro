@@ -1,203 +1,608 @@
 ---
-// Contenido íntegro del index.html original, movido tal cual a un componente de Astro.
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import heroImg from '../assets/images/coworker-instuctions.jpg';
 import mesaImg from '../assets/images/mesa-restaurante-sillas-madera-colocadas-sala-decorada-estilo-clasico_140725-8460.jpg';
 import muebleImg from '../assets/images/Mueble-de-madera-101-7.jpg';
 import armarioImg from '../assets/images/armario-de-madera.jpg';
+
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#testimonials', label: 'Testimonials' },
+  { href: '#contact', label: 'Contact' },
+];
+
+const services = [
+  {
+    title: 'Custom design',
+    text: 'We design around your space, your routines and the way you live — not around a catalogue.',
+  },
+  {
+    title: 'Handcrafted build',
+    text: 'Solid wood, honest joinery and finishes chosen to age beautifully in real homes.',
+  },
+  {
+    title: 'Professional installation',
+    text: 'We deliver and fit every piece on site, down to the last millimetre, and leave it spotless.',
+  },
+];
+
+const process = [
+  {
+    title: 'Design',
+    text: 'A conversation, a sketch and a clear quote. No surprises, no hidden extras.',
+  },
+  {
+    title: 'Build',
+    text: 'Cut, jointed and finished by hand in our Madrid workshop, with materials you can touch.',
+  },
+  {
+    title: 'Install',
+    text: 'We fit everything on site, check every door and drawer, and tidy up before we leave.',
+  },
+];
+
+const testimonials = [
+  {
+    quote: 'Excellent work, attention to detail, and an impeccable result. Totally recommended!',
+    name: 'María P.',
+    project: 'Kitchen · Madrid',
+    initials: 'MP',
+  },
+  {
+    quote: 'My kitchen turned out spectacular, exceeding all my expectations. The team is very professional.',
+    name: 'Juan R.',
+    project: 'Kitchen · Madrid',
+    initials: 'JR',
+  },
+  {
+    quote: 'Professional and punctual. They delivered the furniture on time and with exceptional quality.',
+    name: 'Laura G.',
+    project: 'Wardrobe · Madrid',
+    initials: 'LG',
+  },
+  {
+    quote: 'They transformed my home with their incredible designs. Every detail was perfect!',
+    name: 'Ana S.',
+    project: 'Living room · Madrid',
+    initials: 'AS',
+  },
+];
+
+const marqueeItems = ['Bespoke design', 'Handcrafted in Madrid', 'Solid wood', 'Made to last'];
 ---
 
 <Layout>
-    <!--Nav-->
-  <nav x-data="{open:false}" class="w-full z-40 sticky top-0 bg-[#fffaf2]/95 backdrop-blur-md border-b border-amber-200/70 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center gap-3">
-            <a href="#" class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-md bg-amber-700 flex items-center justify-center text-white font-bold text-xl">C</div>
-              <div>
-                <div class="font-extrabold text-amber-800 text-lg">The Wood Carpentry</div>
-                <div class="text-sm text-amber-700">Furniture & Projects</div>
-              </div>
-            </a>
-          </div>
-          <div class="hidden md:flex md:items-center md:space-x-6">
-            <a href="#inicio" class="text-amber-800 hover:text-amber-900 hover:scale-105 transition duration-300">Inicio</a>
-            <a href="#servicios" class="text-amber-800 hover:text-amber-900 hover:scale-105 transition duration-300">Services</a>
-            <a href="#galeria" class="text-amber-800 hover:text-amber-900 hover:scale-105 transition duration-300">Gallery</a>
-            <a href="#testimonios" class="text-amber-800 hover:text-amber-900 hover:scale-105 transition duration-300">Testimonials</a>
-            <a href="#contacto" class="bg-amber-700 text-white px-4 py-2 rounded-full shadow-lg hover:bg-amber-800 hover:scale-105 transition duration-300">Contact</a>
-          </div>
-          <div class="md:hidden">
-            <button @click="open = !open" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300">
-              <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-              <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div x-show="open" x-cloak x-transition:enter="duration-300 ease-out" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-200 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="md:hidden">
-        <div class="px-4 pt-2 pb-3 space-y-1 bg-white shadow-lg flex flex-col items-center text-center">
-          <a href="#inicio" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-amber-800 hover:bg-amber-50 w-full">Inicio</a>
-          <a href="#servicios" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-amber-800 hover:bg-amber-50 w-full">Services</a>
-          <a href="#galeria" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-amber-800 hover:bg-amber-50 w-full">Gallery</a>
-          <a href="#testimonios" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-amber-800 hover:bg-amber-50 w-full">Testimonials</a>
-          <a href="#contacto" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium bg-amber-700 text-white rounded-full text-center hover:bg-amber-800 w-full">Contact</a>
-        </div>
-      </div>
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-clay focus:px-4 focus:py-2 focus:text-sm focus:text-bone"
+  >
+    Skip to content
+  </a>
+
+  <!-- Header -->
+  <header id="site-header" class="site-header sticky top-0 z-40">
+    <div class="container-x flex h-[72px] items-center justify-between gap-6">
+      <a href="#top" class="flex items-center gap-3">
+        <span class="grid h-9 w-9 place-items-center bg-clay font-display text-lg leading-none text-bone">W</span>
+        <span class="flex flex-col leading-none">
+          <span class="font-display text-[0.98rem] tracking-tight text-ink sm:text-[1.05rem]">The Wood Carpentry</span>
+          <span class="mt-1 hidden text-[9px] uppercase tracking-[0.24em] text-ink-soft sm:block">Furniture & Projects</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-8 md:flex" aria-label="Main">
+        {navLinks.map((link) => (
+          <a href={link.href} class="nav-link" data-nav>{link.label}</a>
+        ))}
+      </nav>
+
+      <a href="#contact" class="btn-primary hidden md:inline-flex">
+        Start a project
+        <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+
+      <button
+        id="menu-toggle"
+        type="button"
+        class="grid h-11 w-11 place-items-center border border-line text-ink md:hidden"
+        aria-expanded="false"
+        aria-controls="site-menu"
+        aria-label="Open menu"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu: native modal dialog. Focus containment, Esc, top layer and focus
+       return to the invoker are browser-managed — no role/aria-modal/focus trap. -->
+  <dialog id="site-menu" aria-label="Menu" class="site-menu">
+    <div class="container-x flex h-[72px] items-center justify-between">
+      <a href="#top" class="flex items-center gap-3" data-menu-link>
+        <span class="grid h-9 w-9 place-items-center bg-clay font-display text-lg leading-none text-bone">W</span>
+        <span class="font-display text-[1.05rem] tracking-tight text-ink">The Wood Carpentry</span>
+      </a>
+      <button
+        id="menu-close"
+        type="button"
+        class="grid h-11 w-11 place-items-center border border-line text-ink"
+        aria-label="Close menu"
+        autofocus
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <nav class="container-x mt-8 flex flex-col" aria-label="Mobile">
+      {navLinks.map((link, index) => (
+        <a href={link.href} class="flex items-baseline justify-between border-b border-line py-5" data-menu-link>
+          <span class="font-display text-4xl text-ink">{link.label}</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-ink-soft">0{index + 1}</span>
+        </a>
+      ))}
     </nav>
-  <!--Hero-->
-  <header id="inicio" class="pt-24">
-      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div data-aos="fade-right">
-          <span class="uppercase text-sm tracking-wider text-amber-700">Carpentry &amp; Design</span>
-          <h1 class="mt-4 text-5xl lg:text-6xl font-extrabold text-amber-900 leading-tight">Custom furniture that tells your story</h1>
-          <p class="mt-4 text-amber-700 text-xl leading-relaxed">From kitchens and wardrobes to unique pieces — artisanal design and professional finish.</p>
-          <div class="mt-8 flex gap-4">
-            <a href="#contacto" class="bg-amber-700 text-white px-6 py-3 rounded-full shadow-xl hover:bg-amber-800 hover:scale-105 transition duration-300">Request a quote</a>
-            <a href="#galeria" class="border border-amber-700 text-amber-700 px-6 py-3 rounded-full hover:bg-amber-50 hover:scale-105 transition duration-300">View works</a>
-          </div>
-          <div class="mt-8 flex gap-6 text-base text-amber-800">
-            <div class="flex items-center gap-2"><svg class="w-6 h-6 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h3V7a1 1 0 112 0v3h3a1 1 0 110 2H8v3a1 1 0 11-2 0v-3H3a1 1 0 01-1-1z"/></svg>Delivery 4-6 weeks</div>
-            <div class="flex items-center gap-2"><svg class="w-6 h-6 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h4l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2h-4l-2-2H4a2 2 0 01-2-2V5z"/></svg>More than 5 years in the market</div>
-          </div>
-        </div>
-        <div class="flex justify-center md:justify-end" data-aos="fade-left">
-          <div class="w-full max-w-md rounded-xl overflow-hidden shadow-2xl">
-            <Image
-              src={heroImg}
-              alt="Carpenters reviewing project plans in the workshop"
-              widths={[448, 612]}
-              sizes="(min-width: 768px) 448px, 100vw"
-              quality={90}
-              priority
-              class="w-full h-96 object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </header>
-    <!--Servicios-->
-    <section id="servicios" class="py-20 bg-amber-50">
-      <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 class="text-4xl font-extrabold text-amber-900 text-center" data-aos="fade-up">Our Services</h2>
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up">
-            <div class="text-amber-700 text-3xl font-bold mb-4 flex items-center">
-              <iconify-icon icon="mdi:ruler-square" class="text-4xl mr-4"></iconify-icon>
-              Custom Design
-            </div>
-            <p class="text-gray-700">We create custom furniture that adapts to your style and needs.</p>
-          </div>
-          <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-            <div class="text-amber-700 text-3xl font-bold mb-4 flex items-center">
-              <iconify-icon icon="mdi:shield-check" class="text-4xl mr-4"></iconify-icon>
-              Guaranteed Quality
-            </div>
-            <p class="text-gray-700">We use high-quality materials and artisanal techniques.</p>
-          </div>
-          <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
-            <div class="text-amber-700 text-3xl font-bold mb-4 flex items-center">
-              <iconify-icon icon="mdi:account-tie" class="text-4xl mr-4"></iconify-icon>
-              Professional Advice
-            </div>
-            <p class="text-gray-700">We advise you on the design and choice of materials.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--Galería-->
-    <section id="galeria" class="py-20">
-      <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 class="text-4xl font-extrabold text-amber-900 text-center" data-aos="fade-up">Our Gallery</h2>
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up">
-            <Image src={mesaImg} alt="Project 1" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
-            <div class="p-4 bg-white">
-              <h3 class="font-serif text-lg font-semibold text-amber-800">Elegant Dining Set</h3>
-              <p class="text-gray-600">A custom-designed dining table and chairs, perfect for family gatherings.</p>
-            </div>
-          </div>
-          <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="100">
-            <Image src={muebleImg} alt="Project 2" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
-            <div class="p-4 bg-white">
-              <h3 class="font-serif text-lg font-semibold text-amber-800">Modern Living Room Cabinet</h3>
-              <p class="text-gray-600">A sleek and functional cabinet, designed to complement any modern living space.</p>
-            </div>
-          </div>
-          <div class="group overflow-hidden rounded-lg shadow-md transform transition-all duration-300 hover:scale-105" data-aos="fade-up" data-aos-delay="200">
-            <Image src={armarioImg} alt="Project 3" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
-            <div class="p-4 bg-white">
-              <h3 class="font-serif text-lg font-semibold text-amber-800">Custom Wardrobe Solution</h3>
-              <p class="text-gray-600">A bespoke wardrobe, maximizing storage and style for any bedroom.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--Testimonios-->
-    <section id="testimonios" class="py-20">
-      <div class="max-w-4xl mx-auto px-6">
-        <h2 class="text-4xl font-extrabold text-amber-900 text-center" data-aos="fade-up">What Our Clients Say</h2>
-        <p class="text-center text-amber-700 mt-4 text-lg" data-aos="fade-up" data-aos-delay="80">Our clients' satisfaction is our priority.</p>
-        <div class="mt-12 overflow-hidden">
-          <div class="swiper-container" data-aos="fade-up" data-aos-delay="80">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide p-8 bg-white rounded-xl shadow-lg min-h-[10rem] flex items-center">"Excellent work, attention to detail, and an impeccable result. Totally recommended!" — María P.</div>
-              <div class="swiper-slide p-8 bg-white rounded-xl shadow-lg min-h-[10rem] flex items-center">"My kitchen turned out spectacular, exceeding all my expectations. The team is very professional." — Juan R.</div>
-              <div class="swiper-slide p-8 bg-white rounded-xl shadow-lg min-h-[10rem] flex items-center">"Professional and punctual. They delivered the furniture on time and with exceptional quality." — Laura G.</div>
-              <div class="swiper-slide p-8 bg-white rounded-xl shadow-lg min-h-[10rem] flex items-center">"They transformed my home with their incredible designs. Every detail was perfect!" — Ana S.</div>
-            </div>
-            <div class="swiper-pagination mt-6"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--Contacto-->
-    <section id="contacto" class="py-20 bg-amber-50">
-      <div class="max-w-3xl mx-auto px-6" data-aos="fade-up">
-        <h2 class="text-4xl font-extrabold text-amber-900 text-center">Contact Us</h2>
-        <p class="text-center text-amber-700 mt-4 text-lg">Do you have a project in mind? We'd love to hear from you!</p>
-        <form id="contactForm" class="mt-12 grid grid-cols-1 gap-6 bg-white p-8 rounded-xl shadow-2xl">
-          <input required name="name" placeholder="Your Name" class="border border-amber-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition duration-200" />
-          <input required type="email" name="email" placeholder="Your Email" class="border border-amber-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition duration-200" />
-          <textarea required name="message" rows="6" placeholder="Describe your project or inquiry" class="border border-amber-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition duration-200"></textarea>
-          <div class="flex justify-end">
-            <button type="submit" class="bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:bg-amber-800 hover:scale-105 transition duration-300">Send Message</button>
-          </div>
-        </form>
-      </div>
-    </section>
-    <!--Footer-->
-    <footer class="bg-white pt-12">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="w-full flex flex-col md:flex-row py-6 items-center justify-between">
-          <div class="flex-1 mb-6 md:mb-0 text-black flex items-center gap-3">
-            <a class="flex items-center gap-3" href="#">
-              <div class="w-10 h-10 rounded-md bg-amber-700 flex items-center justify-center text-white font-bold text-xl">C</div>
-              <div>
-                <div class="font-extrabold text-amber-800 text-lg">The Wood Carpentry</div>
-                <div class="text-sm text-amber-700">Furniture & Projects</div>
-              </div>
+
+    <div class="container-x mt-10 pb-12">
+      <p class="eyebrow">Visit the workshop</p>
+      <p class="mt-3 text-sm text-ink-soft">Madrid · Visits by appointment</p>
+      <a href="tel:+34600000000" class="mt-5 inline-block font-display text-2xl text-ink">+34 600 000 000</a>
+      <a href="#contact" class="btn-primary mt-8 w-full justify-center" data-menu-link>
+        Start a project
+        <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </dialog>
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="top" class="relative overflow-hidden">
+      <div class="container-x grid items-center gap-14 pb-20 pt-14 md:grid-cols-12 md:pb-28 md:pt-20">
+        <div class="md:col-span-6" data-reveal>
+          <p class="eyebrow">Bespoke carpentry · Madrid</p>
+          <h1 class="mt-5 text-[clamp(2.9rem,6.4vw,5.6rem)] leading-[0.95] tracking-[-0.035em]">
+            Custom furniture that tells <em class="italic text-clay">your story</em>.
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+            From kitchens and wardrobes to one-off pieces. Designed with you, made by hand in our workshop and finished to last.
+          </p>
+          <div class="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <a href="#contact" class="btn-primary">
+              Start a project
+              <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a href="#projects" class="link-arrow">
+              View projects
+              <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
             </a>
           </div>
-          <div class="flex-1 text-right">
-            <p class="text-amber-800 text-lg font-semibold">Contact Us</p>
-            <p class="text-amber-700 mt-2">Tel: +34 600 000 000</p>
-            <p class="text-amber-700">Email: contact@carpentry.local</p>
+
+          <!-- Placeholder trust signals — replace with verified figures before launch. -->
+          <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
+            <span class="inline-flex items-center gap-2">
+              <span class="text-clay" aria-hidden="true">★★★★★</span>
+              4.9 on Google
+            </span>
+            <span class="hidden h-3 w-px bg-line sm:inline-block" aria-hidden="true"></span>
+            <span>120+ projects</span>
+            <span class="hidden h-3 w-px bg-line sm:inline-block" aria-hidden="true"></span>
+            <span>2-year warranty</span>
+          </div>
+        </div>
+
+        <div class="md:col-span-6" data-reveal style="--reveal-delay: 120ms">
+          <div class="relative mx-auto max-w-[560px] md:ml-auto">
+            <div class="absolute -left-3 -top-3 h-full w-full border border-line" aria-hidden="true"></div>
+            <div class="relative overflow-hidden">
+              <Image
+                src={heroImg}
+                alt="Carpenters reviewing project plans in the workshop"
+                widths={[480, 612]}
+                sizes="(min-width: 768px) 560px, 100vw"
+                quality={90}
+                priority
+                class="aspect-[3/2] w-full object-cover"
+              />
+            </div>
+            <div class="absolute bottom-4 left-4 border border-line bg-paper px-5 py-4 sm:-bottom-6 sm:-left-6">
+              <!-- Placeholder: confirm the founding year. -->
+              <p class="font-display text-2xl leading-none text-ink">Since 2019</p>
+              <p class="mt-2 text-[9px] uppercase tracking-[0.22em] text-ink-soft">Made in Madrid</p>
+            </div>
+            <p class="absolute -right-2 top-4 hidden text-[9px] uppercase tracking-[0.24em] text-ink-soft [writing-mode:vertical-rl] lg:block">
+              Workshop · Madrid
+            </p>
           </div>
         </div>
       </div>
-      <div class="py-6 bg-amber-800 text-amber-100">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-          <div class="text-sm">© 2025 <strong>The Wood Carpentry</strong> — All rights reserved.</div>
-          <div class="mt-3 md:mt-0 text-sm">Made with ❤️ by your trusted carpenter</div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        {[...marqueeItems, ...marqueeItems].map((item) => (
+          <span class="marquee__item">
+            {item}
+            <span class="text-clay">✦</span>
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Services -->
+    <section id="services" class="py-24 md:py-32">
+      <div class="container-x grid gap-12 md:grid-cols-12">
+        <div class="md:col-span-4" data-reveal>
+          <p class="eyebrow">01 — Services</p>
+          <h2 class="mt-4 text-[clamp(2.2rem,4vw,3.5rem)]">From first sketch to final fit.</h2>
+          <p class="mt-5 max-w-sm text-ink-soft">
+            One team for the whole process: design, build and installation. No middlemen, no surprises.
+          </p>
+          <a href="#contact" class="link-arrow mt-8">
+            Talk about your project
+            <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="md:col-span-8" data-reveal style="--reveal-delay: 100ms">
+          <ul class="border-t border-line">
+            {services.map((service, index) => (
+              <li class="border-b border-line">
+                <a
+                  href="#contact"
+                  class="group grid grid-cols-[auto_1fr_auto] items-start gap-5 py-7 transition-colors hover:bg-paper/60 sm:gap-8 sm:px-2"
+                >
+                  <span class="font-display text-sm text-clay">0{index + 1}</span>
+                  <span>
+                    <span class="block font-display text-2xl text-ink sm:text-3xl">{service.title}</span>
+                    <span class="mt-2 block max-w-xl text-sm leading-relaxed text-ink-soft">{service.text}</span>
+                  </span>
+                  <svg
+                    class="mt-1 h-4 w-4 text-ink-soft transition group-hover:translate-x-1 group-hover:text-clay"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </footer>
-    <!-- jQuery if you need it
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  -->
-    <script type="module" src="/js/main.js" is:inline></script>
+    </section>
+
+    <!-- Process -->
+    <section class="border-y border-line bg-paper py-20 md:py-24">
+      <div class="container-x">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between" data-reveal>
+          <div>
+            <p class="eyebrow">The process</p>
+            <h2 class="mt-4 text-[clamp(2rem,3.5vw,3rem)]">Three steps. One point of contact.</h2>
+          </div>
+          <p class="max-w-sm text-sm text-ink-soft">
+            A clear, unhurried process from the first visit to the final installation.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-8 md:grid-cols-3">
+          {process.map((step, index) => (
+            <div class="border-t border-line pt-5" data-reveal style={`--reveal-delay: ${index * 80}ms`}>
+              <span class="font-display text-5xl text-clay/80">0{index + 1}</span>
+              <h3 class="mt-4 text-xl text-ink">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-soft">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-24 md:py-32">
+      <div class="container-x">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between" data-reveal>
+          <div>
+            <p class="eyebrow">02 — Selected work</p>
+            <h2 class="mt-4 text-[clamp(2.2rem,4.5vw,3.75rem)]">Made to be lived in.</h2>
+          </div>
+          <p class="max-w-xs text-sm text-ink-soft md:text-right">
+            A few recent projects, from compact wardrobes to full dining rooms.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-12 md:gap-8">
+          <figure class="group md:col-span-7" data-reveal>
+            <div class="overflow-hidden bg-line">
+              <Image
+                src={mesaImg}
+                alt="Custom solid oak dining table and chairs in a classic dining room"
+                widths={[480, 768, 1184]}
+                sizes="(min-width: 768px) 58vw, 100vw"
+                quality={85}
+                class="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              />
+            </div>
+            <figcaption class="mt-5 flex items-start justify-between gap-6">
+              <div>
+                <p class="eyebrow">Dining · Madrid</p>
+                <h3 class="mt-2 text-2xl">Elegant dining set</h3>
+                <p class="mt-2 max-w-md text-sm text-ink-soft">
+                  A custom table and chairs in solid oak, designed for long family lunches.
+                </p>
+              </div>
+              <span class="mt-1 text-[10px] uppercase tracking-[0.2em] text-ink-soft">2024</span>
+            </figcaption>
+          </figure>
+
+          <div class="flex flex-col gap-6 md:col-span-5 md:gap-8">
+            <figure class="group" data-reveal style="--reveal-delay: 100ms">
+              <div class="overflow-hidden bg-line">
+                <Image
+                  src={muebleImg}
+                  alt="Solid wood sofa and coffee table on an outdoor terrace"
+                  widths={[480, 768, 997]}
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  quality={85}
+                  class="aspect-square w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
+              </div>
+              <figcaption class="mt-4">
+                <p class="eyebrow">Terrace · Madrid</p>
+                <h3 class="mt-2 text-xl">Outdoor lounge set</h3>
+              </figcaption>
+            </figure>
+
+            <figure class="group" data-reveal style="--reveal-delay: 180ms">
+              <div class="overflow-hidden bg-line">
+                <Image
+                  src={armarioImg}
+                  alt="Bespoke wooden wardrobe with built-in storage"
+                  widths={[480, 612]}
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  quality={85}
+                  class="aspect-[3/2] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
+              </div>
+              <figcaption class="mt-4">
+                <p class="eyebrow">Wardrobe · Madrid</p>
+                <h3 class="mt-2 text-xl">Custom wardrobe solution</h3>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="mt-12 flex justify-center" data-reveal>
+          <a href="#contact" class="btn-outline">
+            Discuss a similar project
+            <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="bg-espresso py-24 text-bone md:py-32">
+      <div class="container-x grid gap-12 md:grid-cols-12">
+        <div class="md:col-span-4" data-reveal>
+          <p class="eyebrow eyebrow-light">03 — Kind words</p>
+          <h2 class="mt-4 text-[clamp(2.2rem,4vw,3.5rem)] text-bone">Trusted in homes across Madrid.</h2>
+          <div class="mt-7 flex items-center gap-3">
+            <span class="text-lg tracking-[0.15em] text-clay-light" aria-hidden="true">★★★★★</span>
+            <span class="text-sm text-bone/70">4.9 on Google · 38 reviews</span>
+          </div>
+          <p class="mt-6 max-w-xs text-sm leading-relaxed text-bone/60">
+            Every project starts with a conversation and ends with a piece that fits the way you live.
+          </p>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2 md:col-span-8">
+          {testimonials.map((testimonial, index) => (
+            <blockquote
+              class="flex flex-col justify-between border border-bone/15 p-6"
+              data-reveal
+              style={`--reveal-delay: ${index * 80}ms`}
+            >
+              <div>
+                <div class="text-sm tracking-[0.15em] text-clay-light" role="img" aria-label="5 out of 5 stars">
+                  ★★★★★
+                </div>
+                <p class="mt-4 text-[0.95rem] leading-relaxed text-bone/80">“{testimonial.quote}”</p>
+              </div>
+              <footer class="mt-6 flex items-center gap-3">
+                <span class="grid h-9 w-9 place-items-center rounded-full border border-bone/20 font-display text-xs text-bone">
+                  {testimonial.initials}
+                </span>
+                <span>
+                  <span class="block text-sm text-bone">{testimonial.name}</span>
+                  <span class="block text-[10px] uppercase tracking-[0.18em] text-bone/50">{testimonial.project}</span>
+                </span>
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="border-t border-line bg-paper py-24 md:py-32">
+      <div class="container-x grid gap-14 md:grid-cols-12">
+        <div class="md:col-span-5" data-reveal>
+          <p class="eyebrow">04 — Contact</p>
+          <h2 class="mt-4 text-[clamp(2.4rem,4.5vw,3.8rem)]">Let’s make something that lasts.</h2>
+          <p class="mt-5 max-w-md text-ink-soft">
+            Tell us about your space, your ideas and your timeline. We’ll come back with a clear proposal within 24–48 hours.
+          </p>
+
+          <dl class="mt-10 space-y-6 text-sm">
+            <!-- Placeholder contact details — replace before launch. -->
+            <div>
+              <dt class="eyebrow">Phone</dt>
+              <dd class="mt-2"><a href="tel:+34600000000" class="text-ink transition-colors hover:text-clay">+34 600 000 000</a></dd>
+            </div>
+            <div>
+              <dt class="eyebrow">Email</dt>
+              <dd class="mt-2">
+                <a href="mailto:contact@carpentry.local" class="text-ink transition-colors hover:text-clay">contact@carpentry.local</a>
+              </dd>
+            </div>
+            <div>
+              <dt class="eyebrow">Workshop</dt>
+              <dd class="mt-2 text-ink-soft">Madrid · Visits by appointment</dd>
+            </div>
+            <div>
+              <dt class="eyebrow">Hours</dt>
+              <dd class="mt-2 text-ink-soft">Monday to Friday, 9:00–18:00</dd>
+            </div>
+          </dl>
+
+          <a
+            href="https://wa.me/34600000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link-arrow mt-8"
+          >
+            Message us on WhatsApp
+            <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="md:col-span-7" data-reveal style="--reveal-delay: 100ms">
+          <!-- Demo: replace the action with a real POST endpoint (see public/js/contactForm.js). -->
+          <form id="contact-form" method="post" action="/api/contact" class="grid gap-7">
+            <div class="grid gap-7 sm:grid-cols-2">
+              <div class="form-field">
+                <label for="name" class="field-label">Name <span class="text-clay" aria-hidden="true">*</span></label>
+                <input id="name" name="name" type="text" autocomplete="name" required aria-invalid="false" data-error="name-error" placeholder="Your name" class="field" />
+                <span id="name-error" class="field-error">Please enter your name.</span>
+              </div>
+              <div class="form-field">
+                <label for="email" class="field-label">Email <span class="text-clay" aria-hidden="true">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required aria-invalid="false" data-error="email-error" placeholder="you@example.com" class="field" />
+                <span id="email-error" class="field-error">Enter an email address in the format you@example.com.</span>
+              </div>
+              <div class="form-field">
+                <label for="phone" class="field-label">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" aria-invalid="false" placeholder="+34 600 000 000" class="field" />
+              </div>
+            </div>
+
+            <fieldset class="form-field min-w-0 border-0 p-0">
+              <legend class="field-label">Project type <span class="text-clay" aria-hidden="true">*</span></legend>
+              <div class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                {['Kitchen', 'Wardrobe', 'Furniture', 'Other'].map((option) => (
+                  <label class="flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink">
+                    <input
+                      type="radio"
+                      name="project"
+                      value={option}
+                      required
+                      aria-invalid="false"
+                      data-error="project-error"
+                      class="h-4 w-4 accent-clay"
+                    />
+                    {option}
+                  </label>
+                ))}
+              </div>
+              <span id="project-error" class="field-error">Please choose a project type.</span>
+            </fieldset>
+
+            <div class="form-field">
+              <label for="message" class="field-label">Tell us about your project <span class="text-clay" aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" rows="4" required aria-invalid="false" data-error="message-error" placeholder="Space, ideas, timeline…" class="field resize-y"></textarea>
+              <span id="message-error" class="field-error">Tell us a little about your project.</span>
+            </div>
+
+            <div class="form-field">
+              <label class="flex items-start gap-3 text-xs leading-relaxed text-ink-soft">
+                <input id="privacy" type="checkbox" name="privacy" required aria-invalid="false" data-error="privacy-error" class="mt-0.5 h-4 w-4 shrink-0 accent-clay" />
+                <span>I agree to the privacy policy and to being contacted about my enquiry.</span>
+              </label>
+              <span id="privacy-error" class="field-error">Please accept the privacy policy to continue.</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-4">
+              <button type="submit" class="btn-primary">
+                Send enquiry
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <p id="form-status" role="status" aria-live="polite" class="hidden text-sm text-clay-dark"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-espresso py-16 text-bone/70">
+    <div class="container-x">
+      <div class="grid gap-10 md:grid-cols-12">
+        <div class="md:col-span-6">
+          <a href="#top" class="inline-flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center bg-clay font-display text-lg text-bone">W</span>
+            <span class="font-display text-3xl text-bone">The Wood Carpentry</span>
+          </a>
+          <p class="mt-4 max-w-sm text-sm leading-relaxed text-bone/60">
+            Bespoke furniture and joinery, designed and made by hand in Madrid.
+          </p>
+          <a href="#contact" class="link-arrow mt-6 border-bone/30 text-bone hover:border-clay-light hover:text-clay-light">
+            Start a project
+            <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="md:col-span-3">
+          <p class="text-[10px] uppercase tracking-[0.22em] text-bone/50">Explore</p>
+          <nav class="mt-4 flex flex-col gap-2 text-sm" aria-label="Footer">
+            {navLinks.map((link) => (
+              <a href={link.href} class="text-bone/70 transition-colors hover:text-bone">{link.label}</a>
+            ))}
+          </nav>
+        </div>
+
+        <div class="md:col-span-3">
+          <p class="text-[10px] uppercase tracking-[0.22em] text-bone/50">Contact</p>
+          <div class="mt-4 flex flex-col gap-2 text-sm">
+            <a href="tel:+34600000000" class="transition-colors hover:text-bone">+34 600 000 000</a>
+            <a href="mailto:contact@carpentry.local" class="transition-colors hover:text-bone">contact@carpentry.local</a>
+            <span class="text-bone/50">Madrid · By appointment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-14 flex flex-col gap-3 border-t border-bone/15 pt-6 text-xs text-bone/50 sm:flex-row sm:items-center sm:justify-between">
+        <p>© {year} The Wood Carpentry. All rights reserved.</p>
+        <p>Designed &amp; made in Madrid</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/main.js" is:inline></script>
 </Layout>

@@ -1,13 +1,7 @@
-import { initAOSAndSwiper } from './vendor.js';
-import { initSmoothScroll } from './smoothScroll.js';
+import { initUI } from './ui.js';
 import { initContactForm } from './contactForm.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  initAOSAndSwiper();
-  initSmoothScroll();
+  initUI();
   initContactForm();
 });
-
-
-
-

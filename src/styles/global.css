@@ -1,0 +1,350 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette: bone, espresso and clay — a warm, editorial craft look */
+  --color-bone: #f4efe7;
+  --color-paper: #fbf8f3;
+  --color-ink: #1e1a17;
+  --color-ink-soft: #5a5148;
+  --color-clay: #a9502f;
+  --color-clay-dark: #8c3f24;
+  --color-clay-light: #d89b7c;
+  --color-sage: #6e7a5e;
+  --color-line: #ded5c8;
+  --color-espresso: #211b16;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-clay);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-clay);
+  }
+
+  .eyebrow-light {
+    color: var(--color-clay-light);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 2px;
+    background: var(--color-clay);
+    color: var(--color-bone);
+    padding: 0.95rem 1.4rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: background-color 0.25s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-clay-dark);
+  }
+
+  .btn-primary svg {
+    transition: transform 0.25s ease;
+  }
+
+  .btn-primary:hover svg {
+    transform: translateX(3px);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--color-ink) 25%, transparent);
+    border-radius: 2px;
+    padding: 0.9rem 1.3rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-clay);
+    color: var(--color-clay);
+  }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
+    padding-bottom: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .link-arrow:hover {
+    color: var(--color-clay);
+    border-color: var(--color-clay);
+  }
+
+  .link-arrow svg {
+    transition: transform 0.25s ease;
+  }
+
+  .link-arrow:hover svg {
+    transform: translateX(3px);
+  }
+
+  .field {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--color-line);
+    border-radius: 0;
+    background: transparent;
+    padding: 0.65rem 0;
+    color: var(--color-ink);
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .field::placeholder {
+    color: color-mix(in srgb, var(--color-ink-soft) 55%, transparent);
+  }
+
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--color-clay);
+  }
+
+  .field-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+
+  /* Errors appear only after interaction (:user-invalid), never while typing. */
+  .field-error {
+    display: none;
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #b3261e;
+  }
+
+  :is(input, select, textarea):is(:user-invalid, .user-invalid-fallback),
+  .field:focus:is(:user-invalid, .user-invalid-fallback) {
+    border-bottom-color: #b3261e;
+  }
+
+  .form-field:has(:is(:user-invalid, .user-invalid-fallback)) .field-error {
+    display: block;
+  }
+
+  .site-header {
+    background: var(--color-bone);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .site-header.is-scrolled {
+    border-bottom-color: var(--color-line);
+  }
+
+  .nav-link {
+    position: relative;
+    font-size: 0.875rem;
+    color: var(--color-ink-soft);
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.35rem;
+    height: 1px;
+    width: 100%;
+    background: var(--color-clay);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link[data-active] {
+    color: var(--color-ink);
+  }
+
+  .nav-link:hover::after,
+  .nav-link[data-active]::after {
+    transform: scaleX(1);
+  }
+
+  /* Full-screen modal menu. No display override: the closed state stays native.
+     Scroll is contained inside the dialog so the sticky header never shifts. */
+  .site-menu {
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: var(--color-bone);
+    color: var(--color-ink);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .site-menu::backdrop {
+    background: rgb(33 27 22 / 0.45);
+    overflow: hidden;
+    overscroll-behavior: contain;
+  }
+
+  dialog:modal {
+    overscroll-behavior: contain;
+  }
+}
+
+@layer utilities {
+  .marquee {
+    overflow: hidden;
+    border-block: 1px solid var(--color-line);
+    background: var(--color-bone);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 32s linear infinite;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  .marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Film grain: a subtle tactile layer over the whole page */
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Reveal on scroll, only when JS is available and motion is allowed */
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .js [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+    }
+  }
+}

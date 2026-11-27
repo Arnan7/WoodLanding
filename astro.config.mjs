@@ -1,5 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 
-// Configuración mínima: el proyecto se sirve como HTML estático.
-export default defineConfig({});
+// Sitio estático con Tailwind v4 compilado en build (sin CDN).
+export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});
